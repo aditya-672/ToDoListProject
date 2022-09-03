@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{% static 'css/loginpage.css' %}" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="main">
+    <p class="sign" align="center">Sign in</p>
+    <form class="form1" method="post" action="{% url 'registerpage' %}">
+      {% csrf_token %}
+      <input class="un " type="text" name="name" align="center" placeholder="Name" autocomplete="off">
+      <input class="un " type="email" name="email" align="center" placeholder="Email-Id" autocomplete="off">
+      <input class="un " type="text" align="center" name="mobno" placeholder="Mobile No." autocomplete="off">
+      <input class="pass" type="password" align="center" name="pass" placeholder="Password" autocomplete="off">
+      <button type="submit" class="submit" align="center">Sign In</button>
+      <p class="forgot" align="center">
+        <a href="{% url 'loginpage' %}">Back to Login Page
+      </p>
+  </div>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+
+    {% if msg1 %}
+
+    Swal.fire({
+      title: '{{msg1}}',
+      icon: 'error',
+      confirmButtonText: '<a href="{% url 'loginpage' %}">Ok</a>'
+    })
+
+    {% endif %}
+
+    {% if msg2 %}
+
+    Swal.fire({
+      title: '{{msg2}}',
+      icon: 'success',
+      confirmButtonText: '<a href="{% url 'loginpage' %}">Ok</a>'
+    })
+
+    {% endif %}
+
+  </script>
+</body>
+
+</html>
